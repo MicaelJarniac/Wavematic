@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.3 (2021-04-08)
+### Fix
+* Wavematic.copy() returns deepcopy ([`035e129`](https://github.com/MicaelJarniac/Wavematic/commit/035e1290c708633989a3399bcaac99272d916307))
+
 ## v0.1.2 (2021-04-08)
 ### Fix
 * requires Python >= 3.7 ([`e67cee9`](https://github.com/MicaelJarniac/Wavematic/commit/e67cee908ac3414a40cdfbaaafaa66b46b40e246))
