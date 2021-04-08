@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from copy import copy
+from copy import copy, deepcopy
 from typing import List, Optional
 
 import numpy as np
@@ -286,8 +286,8 @@ class Wavematic:
         self.name = name
 
     def copy(self) -> "Wavematic":
-        """Create a shallow copy of itself."""
-        return copy(self)
+        """Create a deep copy of itself."""
+        return deepcopy(self)
 
     def add_signal(self, sig: Signal) -> "Wavematic":
         """Add a signal.
