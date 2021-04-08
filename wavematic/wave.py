@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from copy import copy
-from typing import List, Literal, Optional
+from typing import List, Optional
 
 import numpy as np
 import pandas as pd
@@ -173,7 +173,8 @@ class Wave(Signal):
         disp:
             Displacement.
         kind:
-            The kind of wave to generate.
+            The kind of wave to generate. Can be "sine" (default), "square"
+            or "sawtooth".
         name:
             The name to give to the wave signal.
         **kwargs:
@@ -189,7 +190,7 @@ class Wave(Signal):
         amp: float = 0.0,
         phase: float = 0.0,
         disp: float = 0.0,
-        kind: Literal["sine", "square", "sawtooth"] = "sine",
+        kind: str = "sine",
         name: Optional[str] = None,
         **kwargs,
     ):
