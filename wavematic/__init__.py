@@ -11,7 +11,14 @@ from .wave import (
     Wavematic,
 )
 
-__all_exports = [IncompatibleTimeAxisRates, MissingTimeAxis, Noise, TimeAxis, Wave, Wavematic]
+__all_exports = [
+    IncompatibleTimeAxisRates,
+    MissingTimeAxis,
+    Noise,
+    TimeAxis,
+    Wave,
+    Wavematic,
+]
 
 for e in __all_exports:
     e.__module__ = __name__

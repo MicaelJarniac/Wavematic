@@ -1,5 +1,7 @@
 from pandas._testing import assert_series_equal
-from wavematic import TimeAxis, Noise
+
+from wavematic import Noise, TimeAxis
+
 from ..data import data
 
 

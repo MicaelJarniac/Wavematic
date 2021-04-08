@@ -1,7 +1,6 @@
 import pytest
 from pytest import raises
 
-
 from wavematic import TimeAxis
 
 """
