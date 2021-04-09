@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from copy import copy, deepcopy
-from typing import List, Optional
+from typing import Any, List, Optional
 
 import numpy as np
 import pandas as pd
@@ -9,10 +9,6 @@ from scipy import signal
 
 
 class MissingTimeAxis(Exception):
-    pass
-
-
-class IncompatibleTimeAxisRates(Exception):
     pass
 
 
@@ -266,7 +262,7 @@ class Wave(Signal):
         return f"{self.__class__.__name__}({', '.join(args_list)})"
 
 
-class Wavematic:
+class Wavematic(Signal):
     """Combines multiple signals.
 
     Args:
@@ -276,7 +272,6 @@ class Wavematic:
             The name to give to the resulting signal.
     """
 
-    ensure_compatible: bool = True
     force_self_ta: bool = False
 
     def __init__(self, ta: Optional[TimeAxis] = None, name: Optional[str] = None):
@@ -300,65 +295,45 @@ class Wavematic:
             Reference to self.
         """
 
-        if self.ensure_compatible and not self.check_compatible(sig):
-            raise IncompatibleTimeAxisRates(
-                "All `TimeAxis` must have the same `rate`, "
-                "unless `self.ensure_compatible` is set to `False`."
-            )
+        assert isinstance(sig, Signal)
         self.signals.append(sig)
         return self
 
-    def check_compatible(self, sig) -> bool:
-        """Checks if the time axis of a given signal is compatible.
-
-        Args:
-            sig:
-                The signal whose time axis should be checked.
-
-        Returns:
-            `False` if the given signal contains an incompatible
-            time axis, `True` otherwise.
-        """
-
-        if sig.ta is not None:
-            rate = sig.ta.rate
-            rates = [s.ta.rate for s in self.signals if s.ta is not None]
-            if self.ta is not None:
-                rates.append(self.ta.rate)
-            if rates.count(rate) != len(rates):
-                return False
-        return True
-
-    def __iadd__(self, sig: Signal) -> "Wavematic":
+    def __iadd__(self, other: Any) -> "Wavematic":
         """Shortcut to add a signal."""
-        self.add_signal(sig)
-        return self
+        if isinstance(other, Signal):
+            self.add_signal(other)
+            return self
+        else:
+            return NotImplemented
 
-    def __add__(self, sig: Signal) -> "Wavematic":
+    def __add__(self, other: Any) -> "Wavematic":
         """Generate new Wavematic instance with added signal."""
-        out = self.copy()
-        out += sig
-        return out
+        if isinstance(other, Signal):
+            out = self.copy()
+            out += other
+            return out
+        else:
+            return NotImplemented
 
-    def all_signals(self) -> pd.DataFrame:
+    def all_signals(self, ta: Optional[TimeAxis] = None) -> pd.DataFrame:
         """Group all signals."""
         out = pd.DataFrame()
         for i, sig in enumerate(self.signals):
-            force_self_ta = self.force_self_ta
-            kwargs = dict()
-            if sig.ta is None:
-                force_self_ta = True
-            if force_self_ta:
-                kwargs["ta"] = self.ta
-            s = sig.get(**kwargs)
+
+            if ta is None:
+                if sig.ta is None or self.force_self_ta:
+                    ta = self.ta
+
+            s = sig.get(ta)
             if s.name is None:
                 s.name = i
             out = out.join(s, how="outer")
         return out
 
-    def get(self) -> pd.Series:
+    def get(self, ta: Optional[TimeAxis] = None) -> pd.Series:
         """Generate the signal resulting from the addition of contained signals."""
-        out = self.all_signals().sum(axis=1)
+        out = self.all_signals(ta).sum(axis=1)
         name = self.name
         if name is not None:
             out.name = name
