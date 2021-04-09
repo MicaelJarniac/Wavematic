@@ -2,17 +2,9 @@
 
 __version__ = "0.1.3"
 
-from .wave import (
-    IncompatibleTimeAxisRates,
-    MissingTimeAxis,
-    Noise,
-    TimeAxis,
-    Wave,
-    Wavematic,
-)
+from .wave import MissingTimeAxis, Noise, TimeAxis, Wave, Wavematic
 
 __all_exports = [
-    IncompatibleTimeAxisRates,
     MissingTimeAxis,
     Noise,
     TimeAxis,
