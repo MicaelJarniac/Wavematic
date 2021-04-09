@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2021-04-09)
+### Feature
+* recursive Wavematic instances ([`39ece0e`](https://github.com/MicaelJarniac/Wavematic/commit/39ece0ee2d9feb8839769a3ec5d3cbcbe3533ab3))
+
 ## v0.1.3 (2021-04-08)
 ### Fix
 * Wavematic.copy() returns deepcopy ([`035e129`](https://github.com/MicaelJarniac/Wavematic/commit/035e1290c708633989a3399bcaac99272d916307))
