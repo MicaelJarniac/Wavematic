@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.2 (2021-08-03)
+
+
 ## v0.2.1 (2021-08-03)
 ### Documentation
 * **readme:** fix allcontributors section ([`b3f4fc7`](https://github.com/MicaelJarniac/Wavematic/commit/b3f4fc72d5dd3784c54401b1540fba5f34835bb7))
