@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2021-08-03)
+### Documentation
+* **readme:** fix allcontributors section ([`b3f4fc7`](https://github.com/MicaelJarniac/Wavematic/commit/b3f4fc72d5dd3784c54401b1540fba5f34835bb7))
+* create .all-contributorsrc [skip ci] ([`581d491`](https://github.com/MicaelJarniac/Wavematic/commit/581d491e66597b50378384b68738e6064308c876))
+* update README.md [skip ci] ([`3cdd03f`](https://github.com/MicaelJarniac/Wavematic/commit/3cdd03fb716e3167ea2f9e526d6f3adda980ed60))
+
 ## v0.2.0 (2021-04-09)
 ### Feature
 * recursive Wavematic instances ([`39ece0e`](https://github.com/MicaelJarniac/Wavematic/commit/39ece0ee2d9feb8839769a3ec5d3cbcbe3533ab3))
