@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.3 (2021-08-03)
+### Fix
+* trigger release ([`d3b270d`](https://github.com/MicaelJarniac/Wavematic/commit/d3b270d217fd9cc72cf6beb299bb33cf2726b6cc))
+
 ## v0.2.2 (2021-08-03)
 
 
